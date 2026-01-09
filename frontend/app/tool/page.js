@@ -112,17 +112,17 @@ export default function ToolPage() {
   return (
     <div className="py-12 px-4 min-h-screen">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Analyze Your Resume</h1>
-          <p className="text-gray-600">Upload your resume or paste the text to get instant AI-powered feedback</p>
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Analyze Your Resume</h1>
+          <p className="text-gray-600 px-4">Upload your resume or paste the text to get instant AI-powered feedback</p>
         </div>
 
         <Card>
           {/* Input Mode Toggle */}
-          <div className="flex gap-4 mb-6">
+          <div className="flex gap-2 sm:gap-4 mb-6">
             <button
               onClick={() => setInputMode('upload')}
-              className={`flex-1 py-3 px-4 rounded-lg font-medium transition ${
+              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-medium transition text-sm sm:text-base ${
                 inputMode === 'upload'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -132,7 +132,7 @@ export default function ToolPage() {
             </button>
             <button
               onClick={() => setInputMode('text')}
-              className={`flex-1 py-3 px-4 rounded-lg font-medium transition ${
+              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-medium transition text-sm sm:text-base ${
                 inputMode === 'text'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -183,9 +183,9 @@ export default function ToolPage() {
           )}
 
           {/* Job Details */}
-          <div className="mb-6 grid md:grid-cols-2 gap-4">
+          <div className="mb-6 grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="block mb-2 font-medium text-gray-700">
+              <label className="block mb-2 font-medium text-gray-700 text-sm sm:text-base">
                 Target Job Title *
               </label>
               <input
@@ -193,11 +193,11 @@ export default function ToolPage() {
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
                 placeholder="e.g., Software Engineer, Data Analyst"
-                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-gray-400"
+                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-gray-400 text-sm sm:text-base"
               />
             </div>
             <div>
-              <label className="block mb-2 font-medium text-gray-700">
+              <label className="block mb-2 font-medium text-gray-700 text-sm sm:text-base">
                 Years of Experience
               </label>
               <input
@@ -207,7 +207,7 @@ export default function ToolPage() {
                 placeholder="0"
                 min="0"
                 max="50"
-                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-gray-400"
+                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-gray-400 text-sm sm:text-base"
               />
             </div>
           </div>
