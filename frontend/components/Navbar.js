@@ -17,6 +17,9 @@ export default function Navbar() {
             <Link href="/history" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               History
             </Link>
+            <Link href="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+              About
+            </Link>
             <Link 
               href="/tool" 
               className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2.5 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
