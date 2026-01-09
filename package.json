@@ -1,0 +1,18 @@
+{
+  "name": "resume-q",
+  "version": "1.0.0",
+  "description": "AI-Powered Career Advice Platform",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "build": "cd frontend && npm run build",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start"
+  },
+  "keywords": ["career", "ai", "resume", "advice", "nextjs", "express"],
+  "author": "Resume-Q Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
