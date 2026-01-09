@@ -16,7 +16,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://your-frontend-url.vercel.app'
+    'https://resume-analyzer-j0ac.onrender.com',
+    /\.vercel\.app$/
   ],
   credentials: true
 }));
