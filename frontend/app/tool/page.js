@@ -16,6 +16,7 @@ export default function ToolPage() {
   const [experience, setExperience] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [dragActive, setDragActive] = useState(false)
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0]
@@ -24,6 +25,32 @@ export default function ToolPage() {
       setError('')
     } else {
       alert('Please upload a PDF file')
+    }
+  }
+
+  const handleDrag = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true)
+    } else if (e.type === 'dragleave') {
+      setDragActive(false)
+    }
+  }
+
+  const handleDrop = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDragActive(false)
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const droppedFile = e.dataTransfer.files[0]
+      if (droppedFile.type === 'application/pdf') {
+        setFile(droppedFile)
+        setError('')
+      } else {
+        alert('Please upload a PDF file')
+      }
     }
   }
 
@@ -148,7 +175,17 @@ export default function ToolPage() {
               <label className="block mb-2 font-medium text-gray-700">
                 Upload Resume (PDF)
               </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 cursor-pointer group">
+              <div 
+                className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
+                  dragActive 
+                    ? 'border-blue-500 bg-blue-50 scale-105' 
+                    : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50'
+                }`}
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+              >
                 <input
                   type="file"
                   accept=".pdf"
@@ -157,9 +194,13 @@ export default function ToolPage() {
                   id="file-upload"
                 />
                 <label htmlFor="file-upload" className="cursor-pointer">
-                  <div className="text-4xl mb-2 transform group-hover:scale-110 transition-transform duration-300">📎</div>
+                  <div className={`text-4xl mb-2 transform transition-transform duration-300 ${
+                    dragActive ? 'scale-125' : 'group-hover:scale-110'
+                  }`}>
+                    {dragActive ? '📥' : '📎'}
+                  </div>
                   <p className="text-gray-600 mb-1 font-medium">
-                    {file ? file.name : 'Click to upload or drag and drop'}
+                    {file ? file.name : dragActive ? 'Drop your PDF here!' : 'Click to upload or drag and drop'}
                   </p>
                   <p className="text-sm text-gray-500">PDF files only</p>
                 </label>
