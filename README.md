@@ -272,33 +272,3 @@ FormData with 'resume' file
 ## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-1. **API Key Errors**: Ensure your Gemini API key is valid and has sufficient quota
-2. **CORS Issues**: Check that the frontend API URL matches the backend server
-3. **File Upload Errors**: Verify file size limits and supported formats
-4. **Build Errors**: Ensure all dependencies are installed correctly
-
-### Support
-
-For issues and questions:
-1. Check the existing issues in the repository
-2. Create a new issue with detailed information
-3. Include error messages and steps to reproduce
-
-## 🔮 Future Enhancements
-
-- [ ] User authentication and cloud storage
-- [ ] Multiple AI model support
-- [ ] Resume template suggestions
-- [ ] Job market insights integration
-- [ ] Career progression tracking
-- [ ] Interview preparation guidance
-- [ ] Salary insights and negotiation tips
-
----
-
-**Built with ❤️ using Next.js, Express.js, and Google Gemini AI**
