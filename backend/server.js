@@ -24,22 +24,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static('.'));
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadDir = 'uploads/';
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir);
-    }
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-
+// Configure multer for memory storage (no disk writes)
 const upload = multer({ 
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: (req, file, cb) => {
     const allowed = ['application/pdf', 'text/plain', 'application/msword'];
@@ -57,16 +44,15 @@ app.post('/api/upload-resume', upload.single('resume'), async (req, res) => {
     let resumeText = '';
     
     if (req.file.mimetype === 'application/pdf') {
-      const dataBuffer = fs.readFileSync(req.file.path);
-      const data = await pdfParse(dataBuffer);
+      const data = await pdfParse(req.file.buffer);
       resumeText = data.text;
     } else {
-      resumeText = fs.readFileSync(req.file.path, 'utf8');
+      resumeText = req.file.buffer.toString('utf8');
     }
     
     res.json({
       message: 'Resume uploaded successfully',
-      filename: req.file.filename,
+      filename: req.file.originalname,
       resumeText: resumeText
     });
   } catch (error) {

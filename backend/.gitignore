@@ -1,4 +1,23 @@
-.env
+# Dependencies
 node_modules/
+
+# Environment - SECURITY CRITICAL
+.env
+.env.*
+!.env.example
+
+# Uploads - SECURITY CRITICAL
 uploads/
+*.pdf
+*.doc
+*.docx
+
+# Logs
 *.log
+logs/
+
+# Secrets
+*.key
+*.pem
+*.cert
+credentials.json
